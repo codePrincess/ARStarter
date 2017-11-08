@@ -185,5 +185,13 @@ default:
     timeOfDay = "INVALID HOUR!"
 }
 
+/*:
+ * callout(Nun noch ne Übunge gefällig?):
+ Falls du noch Zeit und Lust hast, schau dir die Übungsaufgaben unter folgender URL in der Section "Challenges" an. Sie sind kurz und knackig und helfen enorm, um das grade eben Gehörte gut zu verankern :)
+ 
+ [Ray Wenderlich - Swift Tutorial Part 3](https://www.raywenderlich.com/143970/swift-tutorial-part-3-flow-control)
+ */
+
+
 
 
