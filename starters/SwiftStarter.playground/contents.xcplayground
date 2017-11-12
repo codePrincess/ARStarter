@@ -5,5 +5,9 @@
         <page name='Level 1'/>
         <page name='Level 2'/>
         <page name='Level 3'/>
+        <page name='My Level 0'/>
+        <page name='My Level 1'/>
+        <page name='My Level 2'/>
+        <page name='My Level 3'/>
     </pages>
 </playground>
