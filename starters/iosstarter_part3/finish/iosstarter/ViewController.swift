@@ -28,6 +28,32 @@ class ViewController: UIViewController {
     }
 
     @IBAction func createTapped(_ sender: Any) {
+        
+        let queue = DispatchQueue.global(qos: .background)
+        
+        queue.async {
+            var i : Int64 = 0
+            while i < 1_000_000_000 {
+                i += 1
+            }
+            print("calculation done")
+            
+            DispatchQueue.main.async {
+                self.textView.text = "DONE!"
+            }
+        }
+        
+        
+        /*DispatchQueue.global().async {
+            var i : Int64 = 0
+            while i < 1_000_000_000 {
+                i += 1
+            }
+        }*/
+        
+        
+        
+        
         let randomNumber = GKRandomSource.sharedRandom().nextInt(upperBound: emojis.count)
         let randomEmoji = emojis[randomNumber]
         let text = "Wow, you pressed a button and then suddenly \(randomEmoji) happended \n"

@@ -28,18 +28,15 @@ import Foundation
 //Boolsche Logik
 
 
-
 //Gleichheit, besonders bei Strings
 
 
 //IF-Statement
 
 
-
 /*
  B. Ternäre Operatoren
  */
-
 
 
 /*
@@ -50,7 +47,6 @@ import Foundation
 /*
  D. Switch-Anweisungen
  */
-
 
 
 /*:
