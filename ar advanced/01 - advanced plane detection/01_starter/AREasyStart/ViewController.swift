@@ -22,10 +22,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var infoBgView: UIView!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var distanceBgView: UIView!
     
     let omniLight = SCNLight()
     let ambientLight = SCNLight()
     var currentLightEstimate : ARLightEstimate?
+    
+    var measuringNodes: [SCNNode] = []
     
     var selectedScenePath : String?
     
@@ -38,7 +41,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         //sceneView.showsStatistics = true
         boxTapped(boxButton)
-        distanceLabel.isHidden = true
+        distanceBgView.isHidden = true
         infoLabel.text = "All seems good :)"
         
         runSession()
@@ -73,6 +76,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func measureTapped(_ sender: UIButton) {
+        selectedScenePath = ""
         selectButton(sender)
     }
     
@@ -81,7 +85,7 @@ class ViewController: UIViewController {
             button?.isSelected = false
             button?.layer.borderColor = UIColor.clear.cgColor
             button?.layer.borderWidth = 0
-            distanceLabel.isHidden = true
+            distanceBgView.isHidden = true
         }
         
         button.isSelected = true
@@ -89,7 +93,7 @@ class ViewController: UIViewController {
         button.layer.borderWidth = 5
         
         if button.tag == 3 {
-            distanceLabel.isHidden = false
+            distanceBgView.isHidden = false
         }
         
         print(selectedScenePath ?? "no obj selected")
@@ -153,10 +157,6 @@ class ViewController: UIViewController {
             infoLabel.text = "All seems good :)"
         }
         
-        if (infoLabel.text?.count)! > 0 {
-            infoBgView.isHidden = false
-        }
-        
         guard let lightEstimate = frame.lightEstimate?.ambientIntensity else {
             return
         }
@@ -175,37 +175,79 @@ class ViewController: UIViewController {
             ambientLight.intensity = lightInfo.ambientIntensity / 2
             ambientLight.temperature = lightInfo.ambientColorTemperature
             
-            print("set color estimates to spotlight ( \(lightInfo.ambientIntensity), \(lightInfo.ambientColorTemperature)")
+            //print("set color estimates to spotlight ( \(lightInfo.ambientIntensity), \(lightInfo.ambientColorTemperature)")
         }
     }
     
+    func updateMeasuringNodes() {
+        guard measuringNodes.count > 1 else {
+            return
+        }
+        let firstNode = measuringNodes[0]
+        let secondNode = measuringNodes[1]
+        let showMeasuring = self.measuringNodes.count == 2
+        
+        if showMeasuring {
+            measure(fromNode: firstNode, toNode: secondNode)
+        } else {
+            firstNode.removeFromParentNode()
+            secondNode.removeFromParentNode()
+            measuringNodes.removeFirst(2)
+            distanceLabel.text = ""
+            
+            for node in sceneView.scene.rootNode.childNodes {
+                if node.name == "measuringline" {
+                    node.removeFromParentNode()
+                }
+            }
+        }
+    }
+    
+    func measure(fromNode: SCNNode, toNode: SCNNode) {
+        let measuringLineNode = createLineNode(fromNode: fromNode, toNode: toNode)
+        measuringLineNode.name = "measuringline"
+        sceneView.scene.rootNode.addChildNode(measuringLineNode)
+        
+        let dist = fromNode.position.distanceTo(toNode.position)
+        let measurementValue = String(format: "%.2f", dist)
+        distanceLabel.text = "\(measurementValue) m"
+    }
     
 }
+
+
+
 
 extension ViewController : ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        
         DispatchQueue.main.async {
             if let planeAnchor = anchor as? ARPlaneAnchor {
                 let planeNode = createPlaneNode(center: planeAnchor.center, extent: planeAnchor.extent)
                 node.addChildNode(planeNode)
-            } else if let path = self.selectedScenePath {
-                let modelClone = SCNScene(named: path)!.rootNode.clone()
-                node.addChildNode(modelClone)
+            } else {
+            
+                if let path = self.selectedScenePath, path.count > 0 {
+                    let modelClone = SCNScene(named: path)!.rootNode.clone()
+                    node.addChildNode(modelClone)
+                } else {
+                    //let's measure some stuff!
+                    let measureBubbleNode = createSphereNode(radius: 0.015)
+                    node.addChildNode(measureBubbleNode)
+                    self.measuringNodes.append(node)
+                }
             }
         }
-        
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        
         DispatchQueue.main.async {
             if let planeAnchor = anchor as? ARPlaneAnchor {
                 updatePlaneNode(node.childNodes[0], center: planeAnchor.center, extent: planeAnchor.extent)
+            } else {
+                self.updateMeasuringNodes()
             }
         }
-        
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
