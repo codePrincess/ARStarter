@@ -244,8 +244,6 @@ extension ViewController : ARSCNViewDelegate {
         DispatchQueue.main.async {
             if let planeAnchor = anchor as? ARPlaneAnchor {
                 updatePlaneNode(node.childNodes[0], center: planeAnchor.center, extent: planeAnchor.extent)
-            } else {
-                self.updateMeasuringNodes()
             }
         }
     }
@@ -260,6 +258,7 @@ extension ViewController : ARSCNViewDelegate {
         DispatchQueue.main.async {
             self.updateTrackingInfo()
             self.updateLights()
+            self.updateMeasuringNodes()
         }
     }
 

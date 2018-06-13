@@ -262,7 +262,6 @@ extension ViewController : ARSCNViewDelegate {
                     let measureBubbleNode = createSphereNode(radius: 0.015)
                     node.addChildNode(measureBubbleNode)
                     self.measuringNodes.append(node)
-                    self.updateMeasuringNodes()
                 }
             }
         }
@@ -300,6 +299,7 @@ extension ViewController : ARSCNViewDelegate {
         DispatchQueue.main.async {
             self.updateTrackingInfo()
             self.updateLights()
+            self.updateMeasuringNodes()
         }
     }
 

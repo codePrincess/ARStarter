@@ -285,7 +285,6 @@ extension ViewController : ARSCNViewDelegate {
                     let measureBubbleNode = createSphereNode(radius: 0.005)
                     node.addChildNode(measureBubbleNode)
                     self.measuringNodes.append(node)
-                    self.updateMeasuringNodes()
                 }
             }
         }
@@ -305,7 +304,7 @@ extension ViewController : ARSCNViewDelegate {
                     guard let metalDevice = MTLCreateSystemDefaultDevice() else {
                         return
                     }
-                    
+
                     let planeGeometry = planeAnchor.geometry
                     let plane = ARSCNPlaneGeometry(device: metalDevice)
                     plane?.update(from: planeGeometry)
@@ -331,6 +330,7 @@ extension ViewController : ARSCNViewDelegate {
         DispatchQueue.main.async {
             self.updateTrackingInfo()
             self.updateLights()
+            self.updateMeasuringNodes()
         }
     }
 
