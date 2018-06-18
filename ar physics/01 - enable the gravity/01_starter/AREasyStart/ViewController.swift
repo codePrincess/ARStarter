@@ -285,6 +285,7 @@ extension ViewController : ARSCNViewDelegate {
                     node.castsShadow = false
                     node.renderingOrder = -1
                     node.geometry = plane
+                    node.name = "arplane"
                 }
             }
         }

@@ -27,6 +27,38 @@ func updatePlaneNode(_ node: SCNNode, center: vector_float3, extent: vector_floa
     node.position = SCNVector3Make(center.x, 0, center.z)
 }
 
+func addPhysicsToPlane(_ node: SCNNode) {
+    if #available(iOS 11.3, *) {
+        let geo = node.geometry as! ARSCNPlaneGeometry
+        let boundingSphere = geo.boundingSphere
+        
+        if let plane = node.childNode(withName: "physicsplane", recursively: true) {
+            plane.removeFromParentNode()
+        }
+        
+        let plane = SCNPlane(width: CGFloat(boundingSphere.radius), height: CGFloat(boundingSphere.radius))
+        plane.cornerRadius = 50
+        
+        let planeMaterial = SCNMaterial()
+        planeMaterial.diffuse.contents = UIColor.red.withAlphaComponent(0.3)
+        plane.materials = [planeMaterial]
+        
+        let planeNode = SCNNode(geometry: plane)
+        planeNode.name = "physicsplane"
+        planeNode.position = SCNVector3Make(boundingSphere.center.x, 0, boundingSphere.center.z)
+        planeNode.transform = SCNMatrix4MakeRotation(-Float.pi / 2, 1, 0, 0)
+        
+        node.addChildNode(planeNode)
+        
+        planeNode.physicsBody = nil
+        planeNode.physicsBody = SCNPhysicsBody.kinematic()
+        planeNode.physicsBody?.physicsShape = SCNPhysicsShape(geometry: plane, options: nil)
+        planeNode.physicsBody?.mass = 5 //mass in kg!
+        planeNode.physicsBody?.restitution = 0.0
+        planeNode.physicsBody?.friction = 1.0
+    }
+}
+
 func removeChildren(inNode node: SCNNode) {
     for node in node.childNodes {
         if let name = node.name, name.contains("plane") {
