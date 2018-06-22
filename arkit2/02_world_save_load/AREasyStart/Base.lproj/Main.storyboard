@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.14" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="AREasyStart" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zIL-gS-ePj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" wantsMultisampling="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7uj-9G-aLg">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="DOp-W2-tPf" appends="YES" id="V3A-p5-DLI"/>
+                                </connections>
+                            </arscnView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4zr-P3-f7M">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Pt-pE-JDw">
+                                        <rect key="frame" x="283" y="11.5" width="57" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="📁 World ">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="openWorldTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="ozv-Ow-6OX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ll-Ek-18t">
+                                        <rect key="frame" x="31.5" y="11.5" width="61" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="🏃‍♀️Session">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="runSessionTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="OYw-2z-ZbC"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OdP-FF-m52">
+                                        <rect key="frame" x="160.5" y="11.5" width="54" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="💾 World">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="saveWorldTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="8aZ-le-fmD"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.26920114436619719" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="1Ll-Ek-18t" firstAttribute="centerX" secondItem="4zr-P3-f7M" secondAttribute="centerX" multiplier="0.33" id="XD7-qW-Hv1"/>
+                                    <constraint firstItem="OdP-FF-m52" firstAttribute="centerY" secondItem="4zr-P3-f7M" secondAttribute="centerY" id="Yac-TS-yVP"/>
+                                    <constraint firstItem="1Ll-Ek-18t" firstAttribute="centerY" secondItem="4zr-P3-f7M" secondAttribute="centerY" id="dK8-2u-gTd"/>
+                                    <constraint firstAttribute="height" constant="50" id="mjo-e5-AKq"/>
+                                    <constraint firstItem="6Pt-pE-JDw" firstAttribute="centerX" secondItem="4zr-P3-f7M" secondAttribute="centerX" multiplier="1.66" id="nS3-jz-0iL"/>
+                                    <constraint firstItem="OdP-FF-m52" firstAttribute="centerX" secondItem="4zr-P3-f7M" secondAttribute="centerX" id="vAq-gg-fYp"/>
+                                    <constraint firstItem="6Pt-pE-JDw" firstAttribute="centerY" secondItem="4zr-P3-f7M" secondAttribute="centerY" id="vX6-fx-mXw"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4zr-P3-f7M" firstAttribute="leading" secondItem="ktP-MJ-aXb" secondAttribute="leading" id="4pC-ne-zOu"/>
+                            <constraint firstItem="4zr-P3-f7M" firstAttribute="bottom" secondItem="ktP-MJ-aXb" secondAttribute="bottom" id="BcM-bN-V8q"/>
+                            <constraint firstItem="7uj-9G-aLg" firstAttribute="top" secondItem="zIL-gS-ePj" secondAttribute="top" id="Kk8-n8-BAm"/>
+                            <constraint firstItem="7uj-9G-aLg" firstAttribute="leading" secondItem="ktP-MJ-aXb" secondAttribute="leading" id="QVg-R9-sJO"/>
+                            <constraint firstItem="ktP-MJ-aXb" firstAttribute="bottom" secondItem="7uj-9G-aLg" secondAttribute="bottom" id="Yzk-0s-HhK"/>
+                            <constraint firstItem="ktP-MJ-aXb" firstAttribute="trailing" secondItem="7uj-9G-aLg" secondAttribute="trailing" id="hwi-AS-gcU"/>
+                            <constraint firstItem="4zr-P3-f7M" firstAttribute="trailing" secondItem="ktP-MJ-aXb" secondAttribute="trailing" id="vof-Bm-BiJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ktP-MJ-aXb"/>
+                    </view>
+                    <connections>
+                        <outlet property="loadWorldButton" destination="6Pt-pE-JDw" id="Smq-7t-AZT"/>
+                        <outlet property="saveWorldButton" destination="OdP-FF-m52" id="1QO-gz-vuT"/>
+                        <outlet property="sceneView" destination="7uj-9G-aLg" id="kBm-Rn-fdv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="DOp-W2-tPf">
+                    <connections>
+                        <action selector="sceneTapped:" destination="BV1-FR-VrT" id="UPi-ro-OUa"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="88.799999999999997" y="32.833583208395808"/>
+        </scene>
+    </scenes>
+</document>
