@@ -66,34 +66,27 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.run(configuration)
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
-        if let imageAnchor = anchor as? ARImageAnchor {
-            print("removed node: \(imageAnchor.referenceImage.name!)")
-        }
-    }
-    
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        if let _ = anchor as? ARImageAnchor {
-            if renderer.isNode(node, insideFrustumOf: self.sceneView.pointOfView!) && node.opacity == 0 {
-                if node.opacity == 0 {
-                    node.runAction(SCNAction.fadeOpacity(to: 1, duration: 1.5))
+        updateQueue.async {
+            if let _ = anchor as? ARImageAnchor {
+                if renderer.isNode(node, insideFrustumOf: self.sceneView.pointOfView!) && node.opacity == 0 {
+                    if node.opacity == 0 {
+                        node.runAction(SCNAction.fadeOpacity(to: 1, duration: 1.5))
+                    }
                 }
             }
         }
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        imageNodes.forEach { node in
-            if !renderer.isNode(node, insideFrustumOf: self.sceneView.pointOfView!) {
-                node.runAction(SCNAction.fadeOpacity(to: 0, duration: 1.5))
+        updateQueue.async {
+            self.imageNodes.forEach { node in
+                if !renderer.isNode(node, insideFrustumOf: self.sceneView.pointOfView!) {
+                    node.runAction(SCNAction.fadeOpacity(to: 0, duration: 1.5))
+                }
             }
         }
     }
-    
-    
-    
-    
-    
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         
