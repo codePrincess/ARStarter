@@ -1,5 +1,5 @@
 
-# Get started wit ARKit
+# Get started with ARKit
 
 Welcome to the absolute guide to ARKit! No matter what prior knowledge about 3D programming, Swift coding or iOS platform wisdom you have - this collection of lections will get you started!
 
