@@ -1,4 +1,3 @@
-
 # Get started with ARKit
 
 Welcome to the absolute guide to ARKit! No matter what prior knowledge about 3D programming, Swift coding or iOS platform wisdom you have - this collection of lections will get you started!
@@ -14,7 +13,7 @@ The following list shall show you the principle path through the guide if you wa
 1. **SwiftStarter.playground**
 
     This playground consists of a *four* sections which guide you through the very basics of the language. It will teach you what variables are, how you calculate, how you structure your code, how you can bundle values in collections and give you a rough idea what inheritance is and why you need to know about it - at least need to have heard about it.
-    Do all the exercises in the "My Level..." pages and if you get stuck take a sneak peak into the "Level ..." pages where all the solutions are placed for you.
+    Do all the exercises in the "My Level..." pages and if you get stuck take a sneak peek into the "Level ..." pages where all the solutions are placed for you.
 
 2. **iOS Starters**
 
@@ -22,15 +21,15 @@ The following list shall show you the principle path through the guide if you wa
 
 3. **SceneKit Starters**
 
-    Before getting into augmented reality coding we will first have a look at 3D coding itself. ARKit can be used with 2D and 3D content, but we will focus on dealing with 3D stuff through this whole guide. The three lessions in this section will show you how to deal with the SceneEditor, locate elements, use particle systems and deal with element hierarchies. Additionally you will have the chance to do everything you created in the SceneEditor in code also. This is important to see how you can create 3D elements and behaviour in code which is quite convenient for a lot of use cases.
+    Before getting into augmented reality coding we will first have a look at 3D coding itself. ARKit can be used with 2D and 3D content, but we will focus on dealing with 3D stuff through this whole guide. The three lessons in this section will show you how to deal with the SceneEditor, locate elements, use particle systems and deal with element hierarchies. Additionally you will have the chance to do everything you created in the SceneEditor in code also. This is important to see how you can create 3D elements and behaviour in code which is quite convenient for a lot of use cases.
 
 4. **AR Starters**
 
-    Now it's time to get augmented :D This section covers four lessions from initialising an ARSession, placing 3D models on touch interaction, getting and using light information and dealing with errors the session might throw. As a nice round up we will create our own little AR measing feature where we place two points (aka spheres) in the room and measure the distance between the two of them.
+    Now it's time to get augmented :D This section covers four lessons from initialising an ARSession, placing 3D models on touch interaction, getting and using light information and dealing with errors the session might throw. As a nice round up we will create our own little AR measuring feature where we place two points (aka spheres) in the room and measure the distance between the two of them.
 
 5. **AR Advanced**
 
-    As we are fit for more AR we will dive deeper and use specific features from ARKit like horizontal and vertical plane detection. And as everything looks nicer and more realistic with casted shadows we will play around with them also. To get an idea of what occlusion means in terms of ARKit we will build our own hole in the floor and additionally reconstruct the Game of Thrones "Moon Door" - yes, we will! And after we managed holes we will do a portal - in form of the Tardis. In the very end of this section we will have a look at 3D text and how to place it properly in our augmented world.
+    As we are fit for more AR we will dive deeper and use specific features from ARKit like horizontal and vertical plane detection. And as everything looks nicer and more realistic with cast shadows we will play around with them also. To get an idea of what occlusion means in terms of ARKit we will build our own hole in the floor and additionally reconstruct the Game of Thrones "Moon Door" - yes, we will! And after we managed holes we will do a portal - in form of the Tardis. In the very end of this section we will have a look at 3D text and how to place it properly in our augmented world.
 
 6. **AR Physics**
 
