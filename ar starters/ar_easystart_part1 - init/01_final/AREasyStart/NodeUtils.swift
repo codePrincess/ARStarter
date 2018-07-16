@@ -32,6 +32,29 @@ func removeChildren(inNode node: SCNNode) {
     }
 }
 
+func addPhysicsToSimplePlane(_ node: SCNNode) {
+    node.physicsBody = SCNPhysicsBody.kinematic()
+    
+    let geometry = node.geometry as! SCNPlane
+    
+    node.physicsBody?.physicsShape = SCNPhysicsShape(geometry: geometry, options: nil)
+    //    print("physics shape of plane: \(geometry.width) / \(geometry.height)")
+    node.physicsBody?.restitution = 0.0
+    node.physicsBody?.friction = 1.0
+}
+
+func updatePhysicsOnBox (_ node: SCNNode) {
+    let boxNode = node.childNode(withName: "box", recursively: true)
+    
+    if let box = boxNode {
+        box.physicsBody = .dynamic()
+        box.physicsBody?.mass = 0.5
+        box.physicsBody?.restitution = 0.25
+        box.physicsBody?.friction = 0.75
+        box.position.y = 0.2
+    }
+}
+
 func createSphereNode(radius: CGFloat) -> SCNNode {
     let sphere = SCNSphere(radius:radius)
     sphere.firstMaterial?.diffuse.contents = UIColor.red

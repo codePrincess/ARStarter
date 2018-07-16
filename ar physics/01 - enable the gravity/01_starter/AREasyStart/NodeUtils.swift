@@ -27,6 +27,21 @@ func updatePlaneNode(_ node: SCNNode, center: vector_float3, extent: vector_floa
     node.position = SCNVector3Make(center.x, 0, center.z)
 }
 
+func updatePhysicsOnBoxes (_ model: SCNNode) {
+    let boxNode = model.childNode(withName: "mybox", recursively: true)
+    if let node = boxNode {
+        let physicsBody = SCNPhysicsBody(type: SCNPhysicsBodyType.dynamic, shape: SCNPhysicsShape(geometry: node.geometry!, options: nil))
+        physicsBody.mass = 0.5
+        physicsBody.restitution = 0.25
+        physicsBody.friction = 0.75
+        physicsBody.categoryBitMask = CollisionTypes.shape.rawValue
+        node.physicsBody = physicsBody
+        
+        node.position.y = 0.2
+        node.eulerAngles.x = -.pi / 4
+    }
+}
+
 func addPhysicsToPlane(_ node: SCNNode) {
     if #available(iOS 11.3, *) {
         let geo = node.geometry as! ARSCNPlaneGeometry

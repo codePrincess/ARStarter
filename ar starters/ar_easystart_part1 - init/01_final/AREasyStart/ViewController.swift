@@ -25,6 +25,15 @@ class ViewController: UIViewController {
     
     var selectedScenePath : String?
     
+    let omniLight = SCNLight()
+    let ambiLight = SCNLight()
+    var currentLightEstimate : ARLightEstimate?
+    
+    var screenCenter : CGPoint {
+        let screenSize = view.bounds
+        return CGPoint(x: screenSize.midX, y: screenSize.midY)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //sceneView.showsStatistics = true
@@ -33,6 +42,7 @@ class ViewController: UIViewController {
         distanceLabel.isHidden = true
         
         runSession()
+        addLightsToScene()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,8 +97,9 @@ class ViewController: UIViewController {
     
     func runSession() {
         sceneView.delegate = self
+        
         let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = .horizontal
+        configuration.planeDetection = [.horizontal, .vertical]
         configuration.isLightEstimationEnabled = true
         sceneView.session.run(configuration)
         
@@ -96,6 +107,94 @@ class ViewController: UIViewController {
         //can have side effects on other features
         sceneView.debugOptions = ARSCNDebugOptions.showFeaturePoints
     }
+    
+    func addLightsToScene () {
+        omniLight.type = .omni
+        omniLight.name = "omniLight"
+        
+        let omniNode = SCNNode()
+        omniNode.light = omniLight
+        omniNode.position = SCNVector3Make(0, 5, 0)
+        
+        sceneView.scene.rootNode.addChildNode(omniNode)
+        
+        ambiLight.type = .ambient
+        ambiLight.name = "ambiLight"
+        
+        let ambiNode = SCNNode()
+        ambiNode.light = ambiLight
+        ambiNode.position = SCNVector3Make(0, 5, 5)
+        
+        sceneView.scene.rootNode.addChildNode(ambiNode)
+    }
+    
+    func updateLights () {
+        guard let frame = sceneView.session.currentFrame else {
+            return
+        }
+        
+        currentLightEstimate = frame.lightEstimate
+        
+        if let estimate = currentLightEstimate {
+            omniLight.intensity = estimate.ambientIntensity
+            omniLight.temperature = estimate.ambientColorTemperature
+            ambiLight.intensity = estimate.ambientIntensity / 2
+            ambiLight.temperature = estimate.ambientColorTemperature
+        }
+        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let hit = sceneView.hitTest(
+            screenCenter,
+            types: [.existingPlaneUsingExtent]).first {
+            sceneView.session.add(anchor: ARAnchor(transform: hit.worldTransform))
+        } else if let hit = sceneView.hitTest(
+            screenCenter,
+            types: [.featurePoint]).first {
+            sceneView.session.add(anchor: ARAnchor(transform: hit.worldTransform))
+        }
+    }
 }
 
-extension ViewController : ARSCNViewDelegate {}
+extension ViewController : ARSCNViewDelegate {
+    
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        
+        DispatchQueue.main.async {
+            if let planeAnchor = anchor as? ARPlaneAnchor {
+                let planeNode = createPlaneNode(center: planeAnchor.center, extent: planeAnchor.extent)
+                addPhysicsToSimplePlane(planeNode)
+                node.addChildNode(planeNode)
+            }
+            else if let path = self.selectedScenePath {
+                let modelClone = SCNScene(named: path)!.rootNode.clone()
+                modelClone.name = "boxNode"
+                updatePhysicsOnBox(modelClone)
+                
+                if let node = modelClone.childNode(withName: "box", recursively: true) {
+                    node.physicsBody = nil
+                    node.scale = SCNVector3Make(0.5, 0.5, 0.5)
+                }
+                
+                node.addChildNode(modelClone)
+            }
+        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        DispatchQueue.main.async {
+            if let planeAnchor = anchor as? ARPlaneAnchor {
+                updatePlaneNode(node.childNodes[0], center: planeAnchor.center, extent: planeAnchor.extent)
+                addPhysicsToSimplePlane(node.childNodes[0])
+            }
+        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        DispatchQueue.main.async {
+            self.updateLights()
+        }
+    }
+    
+}

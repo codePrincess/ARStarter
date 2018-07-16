@@ -50,6 +50,7 @@ class ViewController: UIViewController {
         runSession()
         addLightToScene()
         configureWorldBottom()
+        loadAudio()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -156,7 +157,18 @@ class ViewController: UIViewController {
 //        sceneView.debugOptions = ARSCNDebugOptions.showFeaturePoints
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {        
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        let hits = sceneView.hitTest(screenCenter, options: nil)
+        if hits.count > 0 && hits[0].isKind(of: SCNHitTestResult.self) {
+            let node = hits[0].node
+            if node.name == "mybox" {
+                applyForce(to: node)
+                playSound(for: node)
+                return
+            }
+        }
+        
         if let hit = sceneView.hitTest(screenCenter, types: [.existingPlaneUsingExtent]).first {
             sceneView.session.add(anchor: ARAnchor(transform: hit.worldTransform))
             print("added anchor for plane")

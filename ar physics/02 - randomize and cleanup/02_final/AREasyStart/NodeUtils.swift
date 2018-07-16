@@ -27,6 +27,34 @@ func updatePlaneNode(_ node: SCNNode, center: vector_float3, extent: vector_floa
     node.position = SCNVector3Make(center.x, 0, center.z)
 }
 
+func addPhysicsToSimplePlane(_ node: SCNNode) {
+    node.physicsBody = SCNPhysicsBody.kinematic()
+    
+    let geometry = node.geometry as! SCNPlane
+    
+    node.physicsBody?.physicsShape = SCNPhysicsShape(geometry: geometry, options: nil)
+//    print("physics shape of plane: \(geometry.width) / \(geometry.height)")
+    node.physicsBody?.restitution = 0.0
+    node.physicsBody?.friction = 1.0
+}
+
+func updatePhysicsOnBox (_ node: SCNNode) {
+    let boxNode = node.childNode(withName: "box", recursively: true)
+    
+    if let box = boxNode {
+        let physicsBody = SCNPhysicsBody(
+            type: .dynamic,
+            shape: SCNPhysicsShape(geometry: box.geometry!, options: nil))
+        physicsBody.mass = 0.5
+        physicsBody.restitution = 0.25
+        physicsBody.friction = 0.75
+        box.physicsBody = physicsBody
+        
+        box.position.y = 0.2
+    }
+    
+}
+
 func addPhysicsToPlane(_ node: SCNNode) {
     if #available(iOS 11.3, *) {
         let geo = node.geometry as! ARSCNPlaneGeometry

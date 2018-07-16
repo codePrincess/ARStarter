@@ -225,9 +225,6 @@ class ViewController: UIViewController {
     
 }
 
-
-
-
 extension ViewController : ARSCNViewDelegate {
     
     func session(_ session: ARSession, didFailWithError error: Error) {
@@ -258,6 +255,10 @@ extension ViewController : ARSCNViewDelegate {
                     
                     let modelClone = SCNScene(named: path)!.rootNode.clone()
                     node.addChildNode(modelClone)
+                    
+                    if self.boxButton.isSelected {
+                        updatePhysicsOnBoxes(modelClone)
+                    }
                 } else {
                     //let's measure some stuff!
                     let measureBubbleNode = createSphereNode(radius: 0.015)
@@ -280,12 +281,14 @@ extension ViewController : ARSCNViewDelegate {
                     let plane = ARSCNPlaneGeometry(device: metalDevice)
                     plane?.update(from: planeGeometry)
                     plane?.firstMaterial?.diffuse.contents = UIColor(white: 1, alpha: 0.1).cgColor
-                    plane?.firstMaterial?.colorBufferWriteMask = []
+//                    plane?.firstMaterial?.colorBufferWriteMask = []
                     plane?.firstMaterial?.isDoubleSided = true
                     node.castsShadow = false
                     node.renderingOrder = -1
                     node.geometry = plane
                     node.name = "arplane"
+                    
+                    addPhysicsToPlane(node)
                 }
             }
         }

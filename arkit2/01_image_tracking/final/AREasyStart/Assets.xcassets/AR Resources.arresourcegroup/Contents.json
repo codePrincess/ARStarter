@@ -4,6 +4,8 @@
     "author" : "xcode"
   },
   "resources" : [
-
+    {
+      "filename" : "marker.arreferenceimage"
+    }
   ]
 }

@@ -112,6 +112,29 @@ func lineFrom(vector vector1: SCNVector3, toVector vector2: SCNVector3) -> SCNGe
     return SCNGeometry(sources: [source], elements: [element])
 }
 
+func applyForce(to node: SCNNode) {
+    let forceX = Float(GKRandomSource.sharedRandom().nextInt(upperBound: 3))
+    let forceY = Float(GKRandomSource.sharedRandom().nextInt(upperBound: 3))
+    let forceZ = Float(GKRandomSource.sharedRandom().nextInt(upperBound: 3))
+    
+    node.physicsBody?.applyForce(SCNVector3Make(forceX, forceY, forceZ), asImpulse: true)
+}
+
+var boxKickedAudioSource : SCNAudioSource = {
+    let source = SCNAudioSource(fileNamed: "sounds/whoosh.aiff")!
+    source.isPositional = true
+    source.volume = 0.8
+    return source
+} ()
+
+func loadAudio () {
+    boxKickedAudioSource.load()
+}
+
+func playSound (for node: SCNNode) {
+    node.runAction(SCNAction.playAudio(boxKickedAudioSource, waitForCompletion: true))
+}
+
 func - (left: SCNVector3, right: SCNVector3) -> SCNVector3 {
     return SCNVector3Make(left.x - right.x, left.y - right.y, left.z - right.z)
 }
