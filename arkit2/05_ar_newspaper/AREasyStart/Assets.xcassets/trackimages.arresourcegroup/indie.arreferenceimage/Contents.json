@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "indie.jpg"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "properties" : {
+    "width" : 0.087000077881619939
+  }
+}

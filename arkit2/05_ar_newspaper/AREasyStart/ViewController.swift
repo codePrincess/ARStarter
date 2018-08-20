@@ -10,8 +10,9 @@ import UIKit
 import SceneKit
 import ARKit
 import GameplayKit
+import WebKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, WKNavigationDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
@@ -50,6 +51,27 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let loc = touches.first?.location(in: self.view)
+        let hits = sceneView.hitTest(loc!, options: nil)
+        var touchedVideoName = ""
+        if hits.count > 0 && hits[0].isKind(of: SCNHitTestResult.self) {  //found an element!
+            let node = hits[0].node
+            if (node.name?.contains("videonode"))! {
+                touchedVideoName = String((node.name?.split(separator: "+", maxSplits: Int.max, omittingEmptySubsequences: false).last)!)
+            }
+        }
+        
+        if let player = avPlayers[touchedVideoName] {
+            if player.timeControlStatus == .playing {
+                player.pause()
+            } else {
+                player.play()
+            }
+        }
+        
     }
     
     func runSession() {
@@ -129,14 +151,39 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 
                 
                 let videoNode = SCNNode(geometry: videoPlane)
-                videoNode.name = "videonode"
+                videoNode.name = "videonode+\(imageName!)"
                 videoNode.position.x += videoNode.position.x*0.125
                 videoNode.position.y += videoNode.position.y*0.125
                 videoNode.eulerAngles.x = -.pi / 2
                 
+                DispatchQueue.main.async {
+                    if imageName == "indie" {
+                        
+                        let webView = UIWebView(frame: CGRect(x: 0, y: 0, width: 600, height: 400))
+                        webView.loadRequest(URLRequest(url: URL(string: "https://de.wikipedia.org/wiki/Indiana_Jones")!))
+                       
+                        let webMaterial = SCNMaterial()
+                        webMaterial.diffuse.contents = webView
+                        
+                        let webPlane = SCNPlane(
+                            width: 0.15,
+                            height: 0.10)
+                        webPlane.materials = [webMaterial]
+                        
+                        let webNode = SCNNode(geometry: webPlane)
+                        webNode.name = "webnode"
+                        webNode.position.x = 0.12
+                        webNode.position.z = 0.012
+                        webNode.eulerAngles.x = -.pi / 2
+                        webNode.opacity = 0.85
+                        
+                        node.addChildNode(webNode)
+                    }
+                }
+                
+                
                 let whiteBorderMaterial = SCNMaterial()
-//                whiteBorderMaterial.diffuse.contents = UIColor(red: 216/255, green: 212/255, blue: 203/255, alpha: 0.75)
-                whiteBorderMaterial.diffuse.contents = UIColor(white: 0, alpha: 0.8)
+                whiteBorderMaterial.diffuse.contents = UIColor(white: 0, alpha: 0.9)
                 let whiteBorderPlane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width*1.03,
                                           height: imageAnchor.referenceImage.physicalSize.height*1.03)
                 whiteBorderPlane.materials = [whiteBorderMaterial]

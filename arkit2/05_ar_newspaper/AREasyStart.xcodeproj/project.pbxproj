@@ -13,6 +13,7 @@
 		881FFBBF20C148D4000AFBB5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881FFBBE20C148D4000AFBB5 /* ViewController.swift */; };
 		881FFBC220C148D4000AFBB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 881FFBC020C148D4000AFBB5 /* Main.storyboard */; };
 		881FFBC720C148D5000AFBB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 881FFBC520C148D5000AFBB5 /* LaunchScreen.storyboard */; };
+		888E8429212B5A5A0055B735 /* indie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 888E8428212B5A5A0055B735 /* indie.mp4 */; };
 		88C1416120C177870023A1F0 /* NodeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C1416020C177870023A1F0 /* NodeUtils.swift */; };
 		88F9B8C1212B29220099DB24 /* kofi.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 88F9B8C0212B29220099DB24 /* kofi.mp4 */; };
 		88F9B8C4212B293A0099DB24 /* merkel.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 88F9B8C3212B293A0099DB24 /* merkel.mp4 */; };
@@ -27,6 +28,7 @@
 		881FFBC120C148D4000AFBB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		881FFBC620C148D5000AFBB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		881FFBC820C148D5000AFBB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		888E8428212B5A5A0055B735 /* indie.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = indie.mp4; sourceTree = "<group>"; };
 		88C1416020C177870023A1F0 /* NodeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeUtils.swift; sourceTree = "<group>"; };
 		88F9B8C0212B29220099DB24 /* kofi.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = kofi.mp4; sourceTree = "<group>"; };
 		88F9B8C3212B293A0099DB24 /* merkel.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = merkel.mp4; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 		88F9B8C2212B29250099DB24 /* videos */ = {
 			isa = PBXGroup;
 			children = (
+				888E8428212B5A5A0055B735 /* indie.mp4 */,
 				88F9B8C0212B29220099DB24 /* kofi.mp4 */,
 				88F9B8C3212B293A0099DB24 /* merkel.mp4 */,
 			);
@@ -146,6 +149,7 @@
 				881FFBBD20C148D4000AFBB5 /* art.scnassets in Resources */,
 				88F9B8C4212B293A0099DB24 /* merkel.mp4 in Resources */,
 				881FFBC720C148D5000AFBB5 /* LaunchScreen.storyboard in Resources */,
+				888E8429212B5A5A0055B735 /* indie.mp4 in Resources */,
 				8809331E20DBC787008C90CB /* Assets.xcassets in Resources */,
 				88F9B8C1212B29220099DB24 /* kofi.mp4 in Resources */,
 				881FFBC220C148D4000AFBB5 /* Main.storyboard in Resources */,
