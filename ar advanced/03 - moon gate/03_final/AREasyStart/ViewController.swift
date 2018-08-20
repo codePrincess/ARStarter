@@ -268,25 +268,27 @@ extension ViewController : ARSCNViewDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-//        DispatchQueue.main.async {
-//            if let planeAnchor = anchor as? ARPlaneAnchor {
-//                if #available(iOS 11.3, *) {
-//                    guard let metalDevice = MTLCreateSystemDefaultDevice() else {
-//                        return
-//                    }
-//                    
-//                    let planeGeometry = planeAnchor.geometry
-//                    let plane = ARSCNPlaneGeometry(device: metalDevice)
-//                    plane?.update(from: planeGeometry)
-//                    plane?.firstMaterial?.diffuse.contents = UIColor(white: 1, alpha: 0.1).cgColor
-//                    plane?.firstMaterial?.colorBufferWriteMask = []
-//                    plane?.firstMaterial?.isDoubleSided = true
-//                    node.castsShadow = false
-//                    node.renderingOrder = -1
-//                    node.geometry = plane
-//                }
-//            }
-//        }
+        DispatchQueue.main.async {
+            if let planeAnchor = anchor as? ARPlaneAnchor {
+                
+                if #available(iOS 11.3, *) {
+                    
+                    guard let metalDevice = MTLCreateSystemDefaultDevice() else {
+                        return
+                    }
+                    
+                    let planeGeometry = planeAnchor.geometry
+                    let plane = ARSCNPlaneGeometry(device: metalDevice)
+                    plane?.update(from: planeGeometry)
+                    plane?.firstMaterial?.isDoubleSided = true
+                    plane?.firstMaterial?.diffuse.contents = UIColor.clear
+                    plane?.firstMaterial?.colorBufferWriteMask = []
+                    node.renderingOrder = -1
+                    node.castsShadow = false
+                    node.geometry = plane
+                }
+            }
+        }
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {

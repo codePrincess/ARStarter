@@ -57,7 +57,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let configuration = ARImageTrackingConfiguration()
         configuration.isLightEstimationEnabled = true
         
-        guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "tracking", bundle: nil) else {
+        guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "trackimages", bundle: nil) else {
             return
         }
         
@@ -93,6 +93,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         if let imageAnchor = anchor as? ARImageAnchor {
             let imageName = imageAnchor.referenceImage.name
             
+            if imageName == "wetter" {
+                let weather = SCNScene(named: "art.scnassets/wetter.scn")?.rootNode
+                node.addChildNode(weather!)
+                return
+            }
+            else if imageName == "drogen" {
+                let diagram = SCNScene(named: "art.scnassets/diagram.scn")?.rootNode
+                node.addChildNode(diagram!)
+                return
+            }
+            
             guard let path = Bundle.main.path(forResource: imageName!, ofType: "mp4") else {
                 return
             }
@@ -109,37 +120,34 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 let avMaterial = SCNMaterial()
                 avMaterial.diffuse.contents = avPlayer
                 
+                let playerWidth = imageAnchor.referenceImage.physicalSize.width
+                let playerHeight = playerWidth / 16 * 9
                 let videoPlane = SCNPlane(
-                    width: imageAnchor.referenceImage.physicalSize.width,
-                    height: imageAnchor.referenceImage.physicalSize.height)
+                    width: playerWidth,
+                    height: playerHeight)
                 videoPlane.materials = [avMaterial]
+                
                 
                 let videoNode = SCNNode(geometry: videoPlane)
                 videoNode.name = "videonode"
+                videoNode.position.x += videoNode.position.x*0.125
+                videoNode.position.y += videoNode.position.y*0.125
                 videoNode.eulerAngles.x = -.pi / 2
                 
                 let whiteBorderMaterial = SCNMaterial()
-                whiteBorderMaterial.diffuse.contents = UIColor.init(white: 1.0, alpha: 0.8)
-                let whiteBorderPlane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width,
-                                          height: imageAnchor.referenceImage.physicalSize.height)
+//                whiteBorderMaterial.diffuse.contents = UIColor(red: 216/255, green: 212/255, blue: 203/255, alpha: 0.75)
+                whiteBorderMaterial.diffuse.contents = UIColor(white: 0, alpha: 0.8)
+                let whiteBorderPlane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width*1.03,
+                                          height: imageAnchor.referenceImage.physicalSize.height*1.03)
                 whiteBorderPlane.materials = [whiteBorderMaterial]
                 
                 let whiteBorderNode = SCNNode(geometry: whiteBorderPlane)
                 whiteBorderNode.name = "whitebordernode"
                 whiteBorderNode.eulerAngles.x = -.pi / 2
                 
-                let colorMaterial = SCNMaterial()
-                colorMaterial.diffuse.contents = UIColor(red: 202/255, green: 133/255, blue: 88/255, alpha: 0.3)
-                let coverPlane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width,
-                                     height: imageAnchor.referenceImage.physicalSize.height)
-                coverPlane.materials = [colorMaterial]
-                
-                let coverNode = SCNNode(geometry: coverPlane)
-                coverNode.name = "covernode"
-                coverNode.eulerAngles.x = -.pi / 2
-                
+                node.addChildNode(whiteBorderNode)
+                videoNode.position.y += 0.005
                 node.addChildNode(videoNode)
-                node.addChildNode(coverNode)
                 
                 node.runAction(SCNAction.fadeOpacity(to: 1, duration: 1.5))
                 

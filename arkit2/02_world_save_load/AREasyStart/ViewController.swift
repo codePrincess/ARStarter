@@ -52,7 +52,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.getCurrentWorldMap { worldMap, error in
             guard let map = worldMap
                 else { print("Error: \(error!.localizedDescription)"); return }
-            guard let data = try? NSKeyedArchiver.archivedData(withRootObject: map, requiringSecureCoding: true)
+            guard let data = try? NSKeyedArchiver.archivedData(
+                withRootObject: map,
+                requiringSecureCoding: true)
                 else { fatalError("can't encode map") }
             try? data.write(to: self.worldFileURL!)
         }
@@ -60,8 +62,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     func openWorldMap () throws {
         let mapData = try Data(contentsOf: worldFileURL!)
-        guard let worldMap = try NSKeyedUnarchiver.unarchivedObject(of: ARWorldMap.classForKeyedUnarchiver(), from: mapData) as? ARWorldMap
-            else { throw ARError(.invalidWorldMap) }
+        
+        guard
+            let worldMap = try NSKeyedUnarchiver.unarchivedObject(
+            ofClasses: [ARWorldMap.classForKeyedUnarchiver()],
+            from: mapData) as? ARWorldMap
+            else {
+                throw ARError(.invalidWorldMap)
+            }
+        
         runSession(worldMap)
     }
     
@@ -105,7 +114,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             if let theMap = map {
                 configuration.initialWorldMap = theMap
             }
-            self.sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+            self.sceneView.session.run(configuration,
+                                       options: [.resetTracking, .removeExistingAnchors])
         }
     }
     

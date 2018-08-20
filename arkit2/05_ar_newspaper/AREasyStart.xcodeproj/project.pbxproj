@@ -14,12 +14,8 @@
 		881FFBC220C148D4000AFBB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 881FFBC020C148D4000AFBB5 /* Main.storyboard */; };
 		881FFBC720C148D5000AFBB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 881FFBC520C148D5000AFBB5 /* LaunchScreen.storyboard */; };
 		88C1416120C177870023A1F0 /* NodeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C1416020C177870023A1F0 /* NodeUtils.swift */; };
-		88E2D6C920E23F09003577D7 /* harry.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 88E2D6C520E23D31003577D7 /* harry.mp4 */; };
-		88E2D6CF20E24B48003577D7 /* snape.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 88E2D6CD20E24A96003577D7 /* snape.mp4 */; };
-		88E2D6D020E24B4A003577D7 /* minerva.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 88E2D6CE20E24B1B003577D7 /* minerva.mp4 */; };
-		88E2D6DB20E255CE003577D7 /* hogwarts.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 88E2D6DA20E255CD003577D7 /* hogwarts.mp4 */; };
-		88E2D6DD20E25A24003577D7 /* wanted.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 88E2D6DC20E25A23003577D7 /* wanted.mp4 */; };
-		88E2D6DF20E25A32003577D7 /* sirius.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 88E2D6DE20E25A32003577D7 /* sirius.mp4 */; };
+		88F9B8C1212B29220099DB24 /* kofi.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 88F9B8C0212B29220099DB24 /* kofi.mp4 */; };
+		88F9B8C4212B293A0099DB24 /* merkel.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 88F9B8C3212B293A0099DB24 /* merkel.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,12 +28,8 @@
 		881FFBC620C148D5000AFBB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		881FFBC820C148D5000AFBB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88C1416020C177870023A1F0 /* NodeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeUtils.swift; sourceTree = "<group>"; };
-		88E2D6C520E23D31003577D7 /* harry.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = harry.mp4; sourceTree = "<group>"; };
-		88E2D6CD20E24A96003577D7 /* snape.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = snape.mp4; sourceTree = "<group>"; };
-		88E2D6CE20E24B1B003577D7 /* minerva.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = minerva.mp4; sourceTree = "<group>"; };
-		88E2D6DA20E255CD003577D7 /* hogwarts.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = hogwarts.mp4; sourceTree = "<group>"; };
-		88E2D6DC20E25A23003577D7 /* wanted.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = wanted.mp4; sourceTree = "<group>"; };
-		88E2D6DE20E25A32003577D7 /* sirius.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sirius.mp4; sourceTree = "<group>"; };
+		88F9B8C0212B29220099DB24 /* kofi.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = kofi.mp4; sourceTree = "<group>"; };
+		88F9B8C3212B293A0099DB24 /* merkel.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = merkel.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,22 +62,26 @@
 		881FFBB920C148D4000AFBB5 /* AREasyStart */ = {
 			isa = PBXGroup;
 			children = (
+				88F9B8C2212B29250099DB24 /* videos */,
 				881FFBBA20C148D4000AFBB5 /* AppDelegate.swift */,
 				88C1416020C177870023A1F0 /* NodeUtils.swift */,
 				881FFBBC20C148D4000AFBB5 /* art.scnassets */,
 				881FFBBE20C148D4000AFBB5 /* ViewController.swift */,
-				88E2D6CD20E24A96003577D7 /* snape.mp4 */,
-				88E2D6C520E23D31003577D7 /* harry.mp4 */,
-				88E2D6CE20E24B1B003577D7 /* minerva.mp4 */,
-				88E2D6DA20E255CD003577D7 /* hogwarts.mp4 */,
-				88E2D6DE20E25A32003577D7 /* sirius.mp4 */,
-				88E2D6DC20E25A23003577D7 /* wanted.mp4 */,
 				881FFBC020C148D4000AFBB5 /* Main.storyboard */,
 				881FFBC520C148D5000AFBB5 /* LaunchScreen.storyboard */,
 				8809331D20DBC787008C90CB /* Assets.xcassets */,
 				881FFBC820C148D5000AFBB5 /* Info.plist */,
 			);
 			path = AREasyStart;
+			sourceTree = "<group>";
+		};
+		88F9B8C2212B29250099DB24 /* videos */ = {
+			isa = PBXGroup;
+			children = (
+				88F9B8C0212B29220099DB24 /* kofi.mp4 */,
+				88F9B8C3212B293A0099DB24 /* merkel.mp4 */,
+			);
+			path = videos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,14 +144,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				881FFBBD20C148D4000AFBB5 /* art.scnassets in Resources */,
-				88E2D6DD20E25A24003577D7 /* wanted.mp4 in Resources */,
-				88E2D6DB20E255CE003577D7 /* hogwarts.mp4 in Resources */,
-				88E2D6C920E23F09003577D7 /* harry.mp4 in Resources */,
+				88F9B8C4212B293A0099DB24 /* merkel.mp4 in Resources */,
 				881FFBC720C148D5000AFBB5 /* LaunchScreen.storyboard in Resources */,
-				88E2D6CF20E24B48003577D7 /* snape.mp4 in Resources */,
-				88E2D6D020E24B4A003577D7 /* minerva.mp4 in Resources */,
 				8809331E20DBC787008C90CB /* Assets.xcassets in Resources */,
-				88E2D6DF20E25A32003577D7 /* sirius.mp4 in Resources */,
+				88F9B8C1212B29220099DB24 /* kofi.mp4 in Resources */,
 				881FFBC220C148D4000AFBB5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,7 +313,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ms.edustart.AREasyStart.prophet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ms.edustart.AREasyStart.paper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -340,7 +332,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ms.edustart.AREasyStart.prophet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ms.edustart.AREasyStart.paper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
