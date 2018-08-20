@@ -1,0 +1,29 @@
+{
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "resources" : [
+    {
+      "filename" : "drogen.arreferenceimage"
+    },
+    {
+      "filename" : "fussball.arreferenceimage"
+    },
+    {
+      "filename" : "kofi.arreferenceimage"
+    },
+    {
+      "filename" : "merkel.arreferenceimage"
+    },
+    {
+      "filename" : "schwimmen.arreferenceimage"
+    },
+    {
+      "filename" : "sport.arreferenceimage"
+    },
+    {
+      "filename" : "wetter.arreferenceimage"
+    }
+  ]
+}
