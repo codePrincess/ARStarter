@@ -134,6 +134,8 @@ extension ViewController : ARSCNViewDelegate {
     }
 }
 
+// answer used from:
+// https://stackoverflow.com/questions/38809425/convert-apple-emoji-string-to-uiimage
 extension String {
 
     func image() -> UIImage? {
