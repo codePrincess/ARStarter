@@ -2,34 +2,43 @@ import Foundation
 
 
 /*:
- # Level 4 - The Bonus
+ # Level 4 - The Real-Pro
  
- Oben drauf gibt es nun etwas Zucker. Zum einen sehen wir uns an, was Optionals sind, wie sie funktionieren, aber vor allem wie sie unseren Code sicherer gestalten.
+ Wie wird nun Code zusammgefasst und schlau wiederverwendet? Und wie kann man bestehenden Code nach eigenen Bedürfnissen erweitern?
+ All das lernen wir nun hier mit Funktionen, Klassen, Strukturen und Extensions
  
- In dem Zuge werfen wir auch gleich ein Auge auf Typinferenz - ein Feature, dass eins der grundlegenden Basiskonzepte von Swift ist. Typen werden implizit eruiert und nur wenn es kein eindeutiges Ergebnis gibt, muss man selbst Typen nennen.
+ * callout(Level 4 - The Real Pro):
+ - A. Vererbung
+ - B. Klassen und Structs
+ - C. Extensions
  
- * callout(Level 4 - The Bonus):
- - A. Optionals
- - B. Nebenschauplatz Typinferenz
- - C. Error Handling
+ Dann lasst uns loslegen und keine Zeit mehr verlieren :)
  */
 
 
 /*
- A. Optionals ?!
+ A. Vererbung
  
- In Swift sind Optionals ein tolles Werkzeug, um sicher mit etwaig leeren Werten umzugehen.
- Grundsätzlich gibt es Swift keine leeren Werte - Variablen und Konstanten werden per se als initialisiert und mit einem Wert belegt angenommen. Da dies aber nicht immer praktikabel und umsetzbar ist, wurden Optionals ins Leben gerufen
+ ... ist das Konzept der kontextuellen Erweiterung von Daten um Felder, Funktionen und Logiken.
+ Zu abstrakt? Dann kommt hier gleich mal ein Beispiel zur Klärung :D
  */
-
 
 
 /*
- B. Typinferenz - ein Feature, dass eins der grundlegenden Basiskonzepte von Swift ist. Typen werden implizit eruiert und nur wenn es kein eindeutiges Ergebnis gibt, muss man selbst Typen nennen.
+ B. Klassen und Structs
+ 
+ Sieht nahezu gleich aus, ist es aber nicht. Structs erlauben keine Vererbung, können jedoch durch Protokolle und Extensions erweitert werden.
+ MERKE: IdR reichen Structs, um zusammenhängende Informationen zu beschreiben
  */
-
 
 
 /*
- C. Error Handling -  Wie kann man Fehler werfen, diese selbst definieren und auch im Programm darauf reagieren - etwa sogar mit Optionals?
+ C. Extensions
+ 
+ Um etwaige bestehende Funktionalität einer Klasse oder eines Structs zu erweitern, kann man dafür Extensions nutzen. Diese sind auch praktisch, um iOS eigene Objekte zu erweitern.
  */
+
+
+
+
+
