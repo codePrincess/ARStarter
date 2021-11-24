@@ -1,5 +1,6 @@
 import Foundation
 
+
 /*:
  # Level 3 - But wait! There is more!
  
@@ -19,6 +20,7 @@ Mit Funktionen haben wir die Möglichkeit
  - ihre Ein- und Ausgabewerte zu defnieren.
  - YEY!
  */
+
 /*:
  A. Funktionen allgemein - Definition und Nutzung
 

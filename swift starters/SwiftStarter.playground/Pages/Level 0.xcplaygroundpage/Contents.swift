@@ -22,6 +22,7 @@ import Foundation
 
 //Achtung vor Blanks!
 2+6
+
 2 + 6
 //2+ 6
 //2 +6

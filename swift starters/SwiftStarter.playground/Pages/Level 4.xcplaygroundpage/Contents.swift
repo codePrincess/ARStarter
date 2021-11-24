@@ -81,8 +81,15 @@ struct PetAnimals {
     }
 }
 
+extension PetAnimals {
+    func describeEN () -> String {
+        return "The \(name) belongs to the category \(category) and moves on \(numberOfLegs) legs."
+    }
+}
+
 let cat = PetAnimals(category: "Säugetier", name: "Siamkatze", numberOfLegs: 4)
 print(cat.describe())
+print(cat.describeEN())
 
 /*
  C. Extensions
